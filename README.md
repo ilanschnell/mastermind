@@ -14,4 +14,4 @@ Here are some example of how to invoke the program.
 2.) With no arguments, you can enter your own responses.
 
     $ python mastermind.py
-    BBGG: <enter combination of '+' and '-'
+    BBGG: <enter combination of '+' and '-'>
