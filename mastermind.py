@@ -39,7 +39,7 @@ def solve():
             sc = inp.count('+'), inp.count('-')
         else:
             sc = score(SECRET, g)
-            print(i, g, '+' * sc[0] + '-' * sc[1])
+            print("%d %4d %s %s" % (i, len(S), g, '+' * sc[0] + '-' * sc[1]))
         if sc == (4, 0):
             return i
         # eliminate the codes which would not give the same response
