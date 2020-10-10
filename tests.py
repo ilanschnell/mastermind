@@ -58,7 +58,7 @@ def solve(secret):
         print("%d %4d %s %s" % (i, len(S), g, '+' * resp[0] + '-' * resp[1]))
         if resp == (4, 0):
             return i
-        S -= set(s for s in S if score(s, g) != resp)
+        S = set(s for s in S if score(s, g) == resp)
 
 def test_all():
     stat = defaultdict(int)
