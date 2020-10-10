@@ -54,11 +54,11 @@ def solve(secret):
     S = set(possible)
     for i in itertools.count(1):
         g = guess(S)
-        sc = score(secret, g)
-        print("%d %4d %s %s" % (i, len(S), g, '+' * sc[0] + '-' * sc[1]))
-        if sc == (4, 0):
+        resp = score(secret, g)
+        print("%d %4d %s %s" % (i, len(S), g, '+' * resp[0] + '-' * resp[1]))
+        if resp == (4, 0):
             return i
-        S -= set(s for s in S if score(s, g) != sc)
+        S -= set(s for s in S if score(s, g) != resp)
 
 def test_all():
     stat = defaultdict(int)

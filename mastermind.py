@@ -23,8 +23,9 @@ def guess(S):
         return 'BBGG'
     if len(S) == 1:
         return list(S)[0]
-    # pick a guess for which the minimum of how many elements in S would be
-    # eliminated for each response is a maximum
+    # From all possible guesses, pick the one which maximizes the worst
+    # reduction in S.  That is, the one with minimum elements from S
+    # being eliminated for all possible responses.
     return max(possible,
                key=lambda p: min(sum(score(s, p) != res for s in S)
                                  for res in results))
@@ -35,14 +36,15 @@ def solve():
         g = guess(S)
         if SECRET is None:
             inp = input("%s: " % g)
-            sc = inp.count('+'), inp.count('-')
+            resp = inp.count('+'), inp.count('-')
         else:
-            sc = score(SECRET, g)
-            print("%d %4d %s %s" % (i, len(S), g, '+' * sc[0] + '-' * sc[1]))
-        if sc == (4, 0):
+            resp = score(SECRET, g)
+            print("%d %4d %s %s" % (i, len(S), g,
+                                    '+' * resp[0] + '-' * resp[1]))
+        if resp == (4, 0):
             return i
         # eliminate the codes which would not give the same response
-        S -= set(s for s in S if score(s, g) != sc)
+        S -= set(s for s in S if score(s, g) != resp)
 
 if __name__ == '__main__':
     if len(sys.argv) > 2:
