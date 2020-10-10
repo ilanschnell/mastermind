@@ -55,7 +55,7 @@ def solve(secret):
     for i in itertools.count(1):
         g = guess(S)
         sc = score(secret, g)
-        print(i, g, '+' * sc[0] + '-' * sc[1])
+        print("%d %4d %s %s" % (i, len(S), g, '+' * sc[0] + '-' * sc[1]))
         if sc == (4, 0):
             return i
         S -= set(s for s in S if score(s, g) != sc)
