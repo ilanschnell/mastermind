@@ -66,6 +66,10 @@ def test_all():
         print("secret: %s" % secret)
         stat[solve(secret)] += 1
     print(stat)
+    n = sum(i * n for i, n in stat.items())
+    print('n:', n)
+    print('average: %.2f' % (n / len(possible)))
+    print('worst: %d' % max(stat.keys()))
     print('cache:', len(cache))
     assert stat == {
         1:    1,
