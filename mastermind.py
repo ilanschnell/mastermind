@@ -42,7 +42,7 @@ def solve():
         if sc == (4, 0):
             return i
         # eliminate the codes which would not give the same response
-        S -= set(p for p in S if score(p, g) != sc)
+        S -= set(s for s in S if score(s, g) != sc)
 
 if __name__ == '__main__':
     if len(sys.argv) > 2:

@@ -1,4 +1,5 @@
 import re
+import sys
 import itertools
 from collections import defaultdict
 
@@ -45,7 +46,7 @@ def guess(S):
     k = frozenbitarray(p in S for p in possible)
     if k not in cache:
         cache[k] = max(possible,
-                       key=lambda x: min(sum(score(p, x) != res for p in S)
+                       key=lambda p: min(sum(score(s, p) != res for s in S)
                                          for res in results))
     return cache[k]
 
@@ -57,7 +58,7 @@ def solve(secret):
         print(i, g, '+' * sc[0] + '-' * sc[1])
         if sc == (4, 0):
             return i
-        S -= set(p for p in S if score(p, g) != sc)
+        S -= set(s for s in S if score(s, g) != sc)
 
 def test_all():
     stat = defaultdict(int)
@@ -76,4 +77,5 @@ def test_all():
 
 if __name__ == '__main__':
     test_score()
-    test_all()
+    if len(sys.argv) > 1:
+        test_all()
