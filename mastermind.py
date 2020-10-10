@@ -10,9 +10,8 @@ SECRET = None
 
 @lru_cache(1 << 20)
 def score(a, b):
-    matches = sum(apeg == bpeg for apeg, bpeg in zip(a, b))
-    return matches, sum(min(a.count(j), b.count(j))
-                        for j in COLORS) - matches
+    matches = sum(x == y for x, y in zip(a, b))
+    return matches, sum(min(a.count(j), b.count(j)) for j in COLORS) - matches
 
 possible = [''.join(p) for p in itertools.product(COLORS, repeat=4)]
 results = [(right, wrong) for right in range(5) for wrong in range(5 - right)]
@@ -27,7 +26,7 @@ def guess(S):
     # pick a guess for which the minimum of how many elements in S would be
     # eliminated for each response is a maximum
     return max(possible,
-               key=lambda x: min(sum(score(p, x) != res for p in S)
+               key=lambda p: min(sum(score(s, p) != res for s in S)
                                  for res in results))
 
 def solve():
