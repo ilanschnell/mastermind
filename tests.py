@@ -6,7 +6,7 @@ from collections import defaultdict
 from bitarray import frozenbitarray
 
 import mastermind
-from mastermind import score, results
+from mastermind import score, responses
 
 
 mastermind.COLORS = '123456'
@@ -45,9 +45,9 @@ def guess(S):
         return list(S)[0]
     k = frozenbitarray(p in S for p in possible)
     if k not in cache:
-        cache[k] = max(possible,
-                       key=lambda p: min(sum(score(s, p) != res for s in S)
-                                         for res in results))
+        cache[k] = min(possible,
+                       key=lambda p: max(sum(score(s, p) == resp for s in S)
+                                         for resp in responses))
     return cache[k]
 
 def solve(secret):
