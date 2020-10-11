@@ -16,7 +16,7 @@ def score(a, b):
 possible = [''.join(p) for p in itertools.product(COLORS, repeat=4)]
 responses = [(right, wrong) for right in range(5)
              for wrong in range(5 - right)]
-responses.remove((3, 1))
+responses.remove((3, 1))  # len(responses) = 14
 
 
 cache = {}
@@ -25,13 +25,12 @@ def guess(S):
         return 'BBGG'
     if len(S) == 1:
         return list(S)[0]
-    # From all possible guesses, pick the one which maximizes the worst
-    # reduction in S.  That is, the one with minimum elements from S
-    # being eliminated for all possible responses.
-    def worst(p):
-        return max(sum(score(s, p) == resp for s in S) for resp in responses)
-
-    return min(possible, key=worst)
+    # Pick a guess which minimizes the maximum number of remaining S over
+    # all 14 responses.
+    # The guess will result in the minimum elements S remaining, in the
+    # next step, regardless of what the next response is.
+    return min(possible, key=lambda p: max(sum(score(s, p) == resp for s in S)
+                                           for resp in responses))
 
 def solve():
     S = set(possible)
@@ -46,7 +45,7 @@ def solve():
                                     '+' * resp[0] + '-' * resp[1]))
         if resp == (4, 0):
             return i
-        # eliminate the codes which would not give the same response
+        # only keep the codes which would give the same response
         S = set(s for s in S if score(s, g) == resp)
 
 if __name__ == '__main__':
