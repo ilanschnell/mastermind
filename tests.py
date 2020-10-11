@@ -52,8 +52,11 @@ def guess(S):
 
 def solve(secret):
     S = set(possible)
+    guesses = set()
     for i in itertools.count(1):
         g = guess(S)
+        assert g not in guesses
+        guesses.add(g)
         resp = score(secret, g)
         print("%d %4d %s %s" % (i, len(S), g, '+' * resp[0] + '-' * resp[1]))
         if resp == (4, 0):
