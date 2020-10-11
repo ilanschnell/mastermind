@@ -7,6 +7,11 @@ from functools import lru_cache
 COLORS = 'BGKRWY'  # Blue, Green, blacK, Red, White, Yellow
 SECRET = None
 
+def get_response(g):
+    if SECRET is None:
+        inp = input("%s: " % g)
+        return inp.count('+'), inp.count('-')
+    return score(SECRET, g)
 
 @lru_cache(1 << 20)
 def score(a, b):
@@ -18,8 +23,6 @@ responses = [(right, wrong) for right in range(5)
              for wrong in range(5 - right)]
 responses.remove((3, 1))  # len(responses) = 14
 
-
-cache = {}
 def guess(S):
     if len(S) == len(possible):  # first
         return 'BBGG'
@@ -36,13 +39,8 @@ def solve():
     S = set(possible)
     for i in itertools.count(1):
         g = guess(S)
-        if SECRET is None:
-            inp = input("%s: " % g)
-            resp = inp.count('+'), inp.count('-')
-        else:
-            resp = score(SECRET, g)
-            print("%d %4d %s %s" % (i, len(S), g,
-                                    '+' * resp[0] + '-' * resp[1]))
+        resp = get_response(g)
+        print("%d %4d %s %s" % (i, len(S), g, '+' * resp[0] + '-' * resp[1]))
         if resp == (4, 0):
             return i
         # only keep the codes which would give the same response
