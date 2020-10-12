@@ -25,7 +25,9 @@ responses.remove((3, 1))  # len(responses) = 14
 
 def guess(S):
     if len(S) == len(possible):  # first
-        return 'BBGG'
+        res = 2 * random.choices(COLORS, k=2)
+        random.shuffle(res)
+        return ''.join(res)
     if len(S) == 1:
         return list(S)[0]
     # Pick a guess which minimizes the maximum number of remaining S over
