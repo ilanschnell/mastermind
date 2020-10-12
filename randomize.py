@@ -25,7 +25,7 @@ responses.remove((3, 1))  # len(responses) = 14
 
 def guess(S):
     if len(S) == len(possible):  # first
-        res = 2 * random.choices(COLORS, k=2)
+        res = 2 * random.sample(COLORS, 2)
         random.shuffle(res)
         return ''.join(res)
     if len(S) == 1:
