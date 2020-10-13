@@ -3,8 +3,6 @@ import sys
 import itertools
 from collections import defaultdict
 
-from bitarray import frozenbitarray
-
 import mastermind
 from mastermind import score, responses
 
@@ -42,8 +40,8 @@ def guess(S):
     if len(S) == len(possible):  # first
         return '1122'
     if len(S) == 1:
-        return list(S)[0]
-    k = frozenbitarray(p in S for p in possible)
+        return S[0]
+    k = tuple(S)
     if k not in cache:
         cache[k] = min(possible,
                        key=lambda p: max(sum(score(s, p) == resp for s in S)
@@ -51,7 +49,7 @@ def guess(S):
     return cache[k]
 
 def solve(secret):
-    S = set(possible)
+    S = list(possible)
     guesses = set()
     for i in itertools.count(1):
         g = guess(S)
@@ -61,7 +59,7 @@ def solve(secret):
         print("%d %4d %s %s" % (i, len(S), g, '+' * resp[0] + '-' * resp[1]))
         if resp == (4, 0):
             return i
-        S = set(s for s in S if score(s, g) == resp)
+        S = [s for s in S if score(s, g) == resp]
 
 def test_all():
     stat = defaultdict(int)
