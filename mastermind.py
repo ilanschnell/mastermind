@@ -27,7 +27,7 @@ def guess(S):
     if len(S) == len(possible):  # first
         return 'BBGG'
     if len(S) == 1:
-        return list(S)[0]
+        return S[0]
     # Pick a guess which minimizes the maximum number of remaining S over
     # all 14 responses.
     # The guess will result in the minimum elements S remaining, in the
@@ -36,7 +36,7 @@ def guess(S):
                                            for resp in responses))
 
 def solve():
-    S = set(possible)
+    S = list(possible)
     for i in itertools.count(1):
         g = guess(S)
         resp = get_response(g)
@@ -44,7 +44,7 @@ def solve():
         if resp == (4, 0):
             return i
         # only keep the codes which would give the same response
-        S = set(s for s in S if score(s, g) == resp)
+        S = [s for s in S if score(s, g) == resp]
 
 if __name__ == '__main__':
     if len(sys.argv) > 2:
