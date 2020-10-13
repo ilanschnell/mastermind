@@ -1,23 +1,18 @@
 import sys
 import random
 import itertools
-from functools import lru_cache
 
 import mastermind
-from mastermind import COLORS, get_response, score, possible, responses
+from mastermind import COLORS, score, possible, responses
 
 
 def guess(S):
-    if len(S) == len(possible):  # first
+    if len(S) == len(possible):
         res = 2 * random.sample(COLORS, 2)
         random.shuffle(res)
         return ''.join(res)
     if len(S) == 1:
         return list(S)[0]
-    # Pick a guess which minimizes the maximum number of remaining S over
-    # all 14 responses.
-    # The guess will result in the minimum elements S remaining, in the
-    # next step, regardless of what the next response is.
     worst = [max(sum(score(s, possible[i]) == resp for s in S)
                  for resp in responses)
              for i in range(1296)]
@@ -28,16 +23,16 @@ def guess(S):
     return random.choice(choices)
 
 def solve():
-    S = set(possible)
+    S = list(possible)
     for i in itertools.count(1):
         print("===== guess: %d    len(S): %s  =====" % (i, len(S)))
         g = guess(S)
-        resp = get_response(g)
+        resp = mastermind.get_response(g)
         print("%s %s" % (g, '+' * resp[0] + '-' * resp[1]))
         if resp == (4, 0):
             return i
         # only keep the codes which would give the same response
-        S = set(s for s in S if score(s, g) == resp)
+        S = [s for s in S if score(s, g) == resp]
 
 if __name__ == '__main__':
     if len(sys.argv) > 2:
