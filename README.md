@@ -50,5 +50,9 @@ maximun number of remaining `S` over all 14 possible guesses:
                                         for resp in responses))
 
 This guess `g` will result in the minimum elements `S` remaining, in the
-next step, *regardless* of what the response is.  This algorithm has an
-average of 4.76 guesses, but never more then 5 guesses.
+next step, *regardless* of what the response is.
+This can be regarded as an example of the Minimax decision rule, as we
+minimize the maximun (worst possible case depending on the (yet unknown)
+response).
+
+This algorithm has an average of 4.76 guesses, but never more then 5 guesses.
