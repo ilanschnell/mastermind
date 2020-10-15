@@ -50,4 +50,5 @@ maximun number of remaining `S` over all 14 possible guesses:
                                         for resp in responses))
 
 This guess `g` will result in the minimum elements `S` remaining, in the
-next step, *regardless* of what the response is.
+next step, *regardless* of what the response is.  This algorithm has an
+average of 4.76 guesses, but never more then 5 guesses.
