@@ -15,3 +15,10 @@ Here are some example of how to invoke the program.
 
     $ python mastermind.py
     BBGG: <enter combination of '+' and '-'>
+
+
+# How is works
+
+The Donald Knuth developed the code breaking algorithm in 1977, which
+can be found [here](https://www.cs.uni.edu/~wallingf/teaching/cs3530/resources/knuth-mastermind.pdf).
+A description of the algorithm can be found on [Wikipedia](https://en.wikipedia.org/wiki/Mastermind_(board_game)), as well as on many other places.
