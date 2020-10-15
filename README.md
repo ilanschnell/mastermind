@@ -36,7 +36,7 @@ same response to the guess `g`:
 
     S = [s for s in S if score(s, g) == resp]
 
-That is, the possible codes must be consisten with the response to the guess.
+That is, the possible codes must be consistent with the response to the guess.
 
 As a first step (towards a better algorithm), we could simply randomly choose
 any element in `S` as the next guess.  I have tried this, and it works
