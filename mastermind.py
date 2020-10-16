@@ -16,7 +16,7 @@ def get_response(g):
 @lru_cache(1 << 20)
 def score(a, b):
     matches = sum(x == y for x, y in zip(a, b))
-    return matches, sum(min(a.count(j), b.count(j)) for j in COLORS) - matches
+    return matches, sum(min(a.count(c), b.count(c)) for c in COLORS) - matches
 
 possible = [''.join(p) for p in itertools.product(COLORS, repeat=4)]
 responses = [(right, wrong) for right in range(5)
