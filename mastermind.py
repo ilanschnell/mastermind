@@ -21,7 +21,9 @@ def score(a, b):
 possible = [''.join(p) for p in itertools.product(COLORS, repeat=4)]
 responses = [(right, wrong) for right in range(5)
              for wrong in range(5 - right)]
-responses.remove((3, 1))  # len(responses) = 14
+responses.remove((3, 1))
+assert len(responses) == 14
+
 
 def guess(S):
     if len(S) == len(possible):  # first
