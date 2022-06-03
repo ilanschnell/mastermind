@@ -49,7 +49,7 @@ surprisingly well (with an average of about 4.65 guesses) but in some cases
 more then 5 guesses are necessary to break the code.
 
 Instead, we pick a guess (from all possible codes) which minimizes the
-maximun number of remaining `S` over all 14 possible guesses:
+maximum number of remaining `S` over all 14 possible guesses:
 
     min(possible, key=lambda p: max(sum(score(s, p) == resp for s in S)
                                         for resp in responses))
@@ -57,7 +57,7 @@ maximun number of remaining `S` over all 14 possible guesses:
 This guess `g` will result in the minimum elements `S` remaining, in the
 next step, *regardless* of what the response is.
 This can be regarded as an example of the Minimax decision rule, as we
-minimize the maximun (worst possible case depending on the (yet unknown)
+minimize the maximum (worst possible case depending on the (yet unknown)
 response).
 
 This algorithm has an average of 4.76 guesses, but never more then 5 guesses.
