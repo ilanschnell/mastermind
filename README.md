@@ -1,6 +1,10 @@
 # Solving Mastermind
 
-Here are some example of how to invoke the program.
+Here are some example of how to invoke the program:
+
+    `+`: correct color in correct place
+    '-': only color correct
+
 
 1.) Program guesses it's own randomly generated code:
 
