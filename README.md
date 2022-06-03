@@ -20,7 +20,7 @@ Here are some example of how to invoke the program.
 # How is works
 
 Donald Knuth developed a mastermind code breaking algorithm in 1977, and he
-demonstrated that only 5 guess are needed to break the code [here](https://www.cs.uni.edu/~wallingf/teaching/cs3530/resources/knuth-mastermind.pdf).
+demonstrated that only 5 guesses are needed to break the code [here](https://www.cs.uni.edu/~wallingf/teaching/cs3530/resources/knuth-mastermind.pdf).
 A description of the algorithm can be found on [Wikipedia](https://en.wikipedia.org/wiki/Mastermind_(board_game)#Worst_case:_Five-guess_algorithm), as well as on many other places.
 
 Although I was able to create a working program quickly, I found the various
