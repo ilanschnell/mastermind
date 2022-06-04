@@ -18,11 +18,12 @@ responses = [(right, wrong) for right in range(5)
 responses.remove((3, 1))
 assert len(responses) == 14
 
-def get_response(g, text=None):
-    if SECRET is None:
-        inp = input("%s: " % text)
-        return inp.count('+'), inp.count('-')
-    return score(SECRET, g)
+def get_response(g, S):
+    if SECRET:
+        return score(SECRET, g)
+
+    inp = input('%spossible %s: ' % ('' if g in S else 'im', g))
+    return inp.count('+'), inp.count('-')
 
 @lru_cache(1 << 10)
 def guess(S):
@@ -41,7 +42,7 @@ def solve():
     S = allcodes
     for i in itertools.count(1):
         g = guess(S)
-        resp = get_response(g, "%spossible %s" % ("" if g in S else "im", g))
+        resp = get_response(g, S)
         print("%d %4d %s %5s %-4s" %
               (i, len(S), g, g in S, '+' * resp[0] + '-' * resp[1]))
         if resp == (4, 0):
