@@ -56,6 +56,11 @@ maximum number of remaining `S` over all 14 possible guesses:
 
 This guess `g` will result in the minimum elements `S` remaining, in the
 next step, *regardless* of what the response actually is.
+As we pick the guess from all possible codes (and not just `S`), we may (and
+often do) pick a guess which cannot be a solution.  However, we do this
+in order to minimize the worst response such that `S` is smallest in the
+next iteration.
+
 This can be regarded as an example of the Minimax decision rule, as we
 minimize the maximum (worst possible case depending on the (yet unknown)
 response).

@@ -42,7 +42,8 @@ def solve():
     for i in itertools.count(1):
         g = guess(S)
         resp = get_response(g)
-        print("%d %4d %s %s" % (i, len(S), g, '+' * resp[0] + '-' * resp[1]))
+        print("%d %4d %s %-4s %s" %
+              (i, len(S), g, '+' * resp[0] + '-' * resp[1], g in S))
         if resp == (4, 0):
             return i
         # only keep the codes which would give the same response
