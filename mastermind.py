@@ -32,8 +32,8 @@ def guess(S):
         return S[0]
     # Pick a guess which minimizes the maximum number of remaining S over
     # all 14 responses.
-    # The guess will result in the minimum elements S remaining, in the
-    # next step, regardless of what the next response is.
+    # The guess will result in the minimum elements S remaining in the
+    # next step, regardless of what the next response actually is.
     return min(possible, key=lambda p: max(sum(score(s, p) == resp for s in S)
                                            for resp in responses))
 
