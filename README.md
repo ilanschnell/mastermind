@@ -34,7 +34,7 @@ to the bottom of how it works.   So what follows is my own description.
 
 The algorithm that progressively reduces the number of possible codes.
 It starts by taking creating a list of all 1296 (6^4) possible codes `S`,
-and an initial guess of BBGG.
+and an initial guess of `BBGG`.
 Obviously, a response of `(4, 0)` terminates the algorithm.
 After each response `resp`, we only keep the codes `S` which would give the
 same response to the guess `g`:
@@ -51,7 +51,7 @@ more then 5 guesses are necessary to break the code.
 Instead, we pick a guess (from *all* codes) which minimizes the
 maximum number of remaining `S` over all 14 possible guesses:
 
-    min(possible, key=lambda p: max(sum(score(s, p) == resp for s in S)
+    min(allcodes, key=lambda p: max(sum(score(s, p) == resp for s in S)
                                         for resp in responses))
 
 This guess `g` will result in the minimum elements `S` remaining, in the

@@ -12,7 +12,7 @@ def score(a, b):
     matches = sum(x == y for x, y in zip(a, b))
     return matches, sum(min(a.count(c), b.count(c)) for c in COLORS) - matches
 
-possible = tuple(''.join(p) for p in itertools.product(COLORS, repeat=4))
+allcodes = tuple(''.join(p) for p in itertools.product(COLORS, repeat=4))
 responses = [(right, wrong) for right in range(5)
              for wrong in range(5 - right)]
 responses.remove((3, 1))
@@ -26,7 +26,7 @@ def get_response(g):
 
 @lru_cache(1 << 10)
 def guess(S):
-    if len(S) == len(possible):  # first
+    if len(S) == len(allcodes):  # first
         return 'BBGG'
     if len(S) == 1:
         return S[0]
@@ -34,11 +34,11 @@ def guess(S):
     # all 14 responses.
     # The guess will result in the minimum elements S remaining in the
     # next step, regardless of what the next response actually is.
-    return min(possible, key=lambda p: max(sum(score(s, p) == resp for s in S)
+    return min(allcodes, key=lambda p: max(sum(score(s, p) == resp for s in S)
                                            for resp in responses))
 
 def solve():
-    S = possible
+    S = allcodes
     for i in itertools.count(1):
         g = guess(S)
         resp = get_response(g)

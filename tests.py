@@ -22,14 +22,14 @@ def test_score():
 
 def test_all():
     stat = defaultdict(int)
-    for secret in mastermind.possible:
+    for secret in mastermind.allcodes:
         mastermind.SECRET = secret
         print("secret: %s" % secret)
         stat[mastermind.solve()] += 1
     print(stat)
     n = sum(i * n for i, n in stat.items())
     print('n:', n)
-    print('average: %.2f' % (n / len(mastermind.possible)))
+    print('average: %.2f' % (n / len(mastermind.allcodes)))
     print('worst: %d' % max(stat.keys()))
     assert stat == {
         1:    1,
