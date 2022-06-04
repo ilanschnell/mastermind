@@ -59,8 +59,6 @@ if __name__ == '__main__':
         if SECRET == '-':
             SECRET = ''.join(random.choices(COLORS, k=4))
             print("secret: %s" % SECRET)
-            solve()
-            sys.exit()
         if len(SECRET) != 4 or set(SECRET) - set(COLORS):
             sys.exit("is not a well-formed Mastermind code: %r" % SECRET)
 
