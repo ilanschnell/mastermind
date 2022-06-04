@@ -31,7 +31,6 @@ def test_all():
     print('n:', n)
     print('average: %.2f' % (n / len(mastermind.possible)))
     print('worst: %d' % max(stat.keys()))
-    #print('cache:', len(cache))
     assert stat == {
         1:    1,
         2:    6,
