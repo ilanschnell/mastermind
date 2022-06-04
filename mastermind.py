@@ -18,9 +18,9 @@ responses = [(right, wrong) for right in range(5)
 responses.remove((3, 1))
 assert len(responses) == 14
 
-def get_response(g):
+def get_response(g, text=None):
     if SECRET is None:
-        inp = input("%s: " % g)
+        inp = input("%s: " % text)
         return inp.count('+'), inp.count('-')
     return score(SECRET, g)
 
@@ -41,9 +41,9 @@ def solve():
     S = allcodes
     for i in itertools.count(1):
         g = guess(S)
-        resp = get_response(g)
-        print("%d %4d %s %-4s %s" %
-              (i, len(S), g, '+' * resp[0] + '-' * resp[1], g in S))
+        resp = get_response(g, "%spossible %s" % ("" if g in S else "im", g))
+        print("%d %4d %s %5s %-4s" %
+              (i, len(S), g, g in S, '+' * resp[0] + '-' * resp[1]))
         if resp == (4, 0):
             return i
         # only keep the codes which would give the same response
