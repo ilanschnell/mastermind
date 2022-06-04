@@ -46,7 +46,7 @@ def solve():
         if resp == (4, 0):
             return i
         # only keep the codes which would give the same response
-        S = tuple([s for s in S if score(s, g) == resp])
+        S = tuple(s for s in S if score(s, g) == resp)
 
 if __name__ == '__main__':
     if len(sys.argv) > 2:
