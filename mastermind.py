@@ -23,6 +23,8 @@ def get_response(g, S):
         return score(SECRET, g)
 
     inp = input('%spossible %s: ' % ('' if g in S else 'im', g))
+    if set(inp) - set('+-'):
+        sys.exit("ill-formed response: %r" % inp)
     return inp.count('+'), inp.count('-')
 
 @lru_cache(1 << 10)
@@ -60,6 +62,6 @@ if __name__ == '__main__':
             SECRET = ''.join(random.choices(COLORS, k=4))
             print("secret: %s" % SECRET)
         if len(SECRET) != 4 or set(SECRET) - set(COLORS):
-            sys.exit("is not a well-formed Mastermind code: %r" % SECRET)
+            sys.exit("ill-formed Mastermind code: %r" % SECRET)
 
     solve()
