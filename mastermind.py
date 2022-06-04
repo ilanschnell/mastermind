@@ -12,7 +12,7 @@ def score(a, b):
     matches = sum(x == y for x, y in zip(a, b))
     return matches, sum(min(a.count(c), b.count(c)) for c in COLORS) - matches
 
-possible = [''.join(p) for p in itertools.product(COLORS, repeat=4)]
+possible = tuple(''.join(p) for p in itertools.product(COLORS, repeat=4))
 responses = [(right, wrong) for right in range(5)
              for wrong in range(5 - right)]
 responses.remove((3, 1))
@@ -24,6 +24,7 @@ def get_response(g):
         return inp.count('+'), inp.count('-')
     return score(SECRET, g)
 
+@lru_cache(1 << 10)
 def guess(S):
     if len(S) == len(possible):  # first
         return 'BBGG'
@@ -37,7 +38,7 @@ def guess(S):
                                            for resp in responses))
 
 def solve():
-    S = list(possible)
+    S = possible
     for i in itertools.count(1):
         g = guess(S)
         resp = get_response(g)
@@ -45,7 +46,7 @@ def solve():
         if resp == (4, 0):
             return i
         # only keep the codes which would give the same response
-        S = [s for s in S if score(s, g) == resp]
+        S = tuple([s for s in S if score(s, g) == resp])
 
 if __name__ == '__main__':
     if len(sys.argv) > 2:
