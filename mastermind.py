@@ -7,12 +7,6 @@ from functools import lru_cache
 COLORS = 'BGKRWY'  # Blue, Green, blacK, Red, White, Yellow
 SECRET = None
 
-def get_response(g):
-    if SECRET is None:
-        inp = input("%s: " % g)
-        return inp.count('+'), inp.count('-')
-    return score(SECRET, g)
-
 @lru_cache(1 << 20)
 def score(a, b):
     matches = sum(x == y for x, y in zip(a, b))
@@ -24,6 +18,11 @@ responses = [(right, wrong) for right in range(5)
 responses.remove((3, 1))
 assert len(responses) == 14
 
+def get_response(g):
+    if SECRET is None:
+        inp = input("%s: " % g)
+        return inp.count('+'), inp.count('-')
+    return score(SECRET, g)
 
 def guess(S):
     if len(S) == len(possible):  # first
