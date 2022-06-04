@@ -48,7 +48,7 @@ any element in `S` as the next guess.  I have tried this, and it works
 surprisingly well (with an average of about 4.65 guesses) but in some cases
 more then 5 guesses are necessary to break the code.
 
-Instead, we pick a guess (from all possible codes) which minimizes the
+Instead, we pick a guess (from *all* codes) which minimizes the
 maximum number of remaining `S` over all 14 possible guesses:
 
     min(possible, key=lambda p: max(sum(score(s, p) == resp for s in S)
@@ -56,10 +56,10 @@ maximum number of remaining `S` over all 14 possible guesses:
 
 This guess `g` will result in the minimum elements `S` remaining, in the
 next step, *regardless* of what the response actually is.
-As we pick the guess from all possible codes (and not just `S`), we may (and
-often do) pick a guess which cannot be a solution.  However, we do this
-in order to minimize the worst response such that `S` is smallest in the
-next iteration.
+As we pick the guess from all codes (not just the possible codes `S`),
+we may (and often do) pick a guess which is an impossible solution.
+However, we do this in order to minimize the worst response such that `S` is
+smallest for the next iteration.
 
 This can be regarded as an example of the Minimax decision rule, as we
 minimize the maximum (worst possible case depending on the (yet unknown)
