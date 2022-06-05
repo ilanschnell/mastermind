@@ -1,13 +1,13 @@
 import sys
 import random
 import itertools
-from functools import lru_cache
+from functools import cache  # requires Python 3.9
 
 
 COLORS = 'BGKRWY'  # Blue, Green, blacK, Red, White, Yellow
 SECRET = None
 
-@lru_cache(1 << 20)
+@cache
 def score(a, b):
     matches = sum(x == y for x, y in zip(a, b))
     return matches, sum(min(a.count(c), b.count(c)) for c in COLORS) - matches
@@ -27,7 +27,7 @@ def get_response(g, S):
         sys.exit("ill-formed response: %r" % inp)
     return inp.count('+'), inp.count('-')
 
-@lru_cache(1 << 10)
+@cache
 def guess(S):
     if len(S) == len(allcodes):  # first
         return 'BBGG'
