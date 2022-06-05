@@ -52,11 +52,12 @@ def solve():
         # only keep the codes which would give the same response
         S = tuple(s for s in S if score(s, g) == resp)
 
-if __name__ == '__main__':
+def main():
     if len(sys.argv) > 2:
         sys.exit("Usage: %s [secret]" % sys.argv[0])
 
     if len(sys.argv) == 2:
+        global SECRET
         SECRET = sys.argv[1]
         if SECRET == '-':
             SECRET = ''.join(random.choices(COLORS, k=4))
@@ -65,3 +66,6 @@ if __name__ == '__main__':
             sys.exit("ill-formed Mastermind code: %r" % SECRET)
 
     solve()
+
+if __name__ == '__main__':
+    main()
