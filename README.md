@@ -1,26 +1,34 @@
 # Solving Mastermind
 
-Responses:
-
-    +   correct color in correct place
-    -   only color correct
-
 Here are some example of how to invoke the program:
 
 1.) Program guesses it's own randomly generated code:
 
     $ python mastermind.py -
-    secret: BGRK
-    1 1296 BBGG +-   True
-    2  208 BBKR +--  False
-    3   34 BKBW +-   True
-    4    6 BGYK +++  False
-    5    1 BGRK ++++ True
+    secret: RBKB
+    1 1296 BBGG  True +-
+    2  208 BBKR False ++--
+    3    4 BGBR False ---
+    4    1 RBKB  True ++++
 
-2.) With no arguments, you can enter your own responses.
+2.) Guess given code:
+
+    $ $ python mastermind.py RGWY
+    1 1296 BBGG  True -
+    2  256 GKRR  True --
+    3   41 KGKW  True +-
+    4    6 BRWK False +-
+    5    1 RGWY  True ++++
+
+3.) With no arguments, you can enter your own responses.
 
     $ python mastermind.py
     BBGG: <enter combination of '+' and '-'>
+
+Responses:
+
+    +   correct color in correct place
+    -   only color correct
 
 
 # How is works
