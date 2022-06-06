@@ -14,10 +14,11 @@ def solve(secret):
             responses += "%d%d " % resp
         g = guess(S)
 
+        value = g + ('' if g in S else '*')
         try:
-            assert table[responses] == g
+            assert table[responses] == value
         except KeyError:
-            table[responses] = g
+            table[responses] = value
 
         resp = score(g, secret)
         if resp == (4, 0):
