@@ -16,9 +16,9 @@ def solve(secret):
 
         value = g
         # Meaning of symbols:
-        #   - no symbol: this is definitely the correct answer
-        #   - '*': this is definitely not the correct answer yet
-        #   - '?': this is maybe the answer
+        #   no symbol: definitely the correct answer
+        #     '*'    : definitely not the correct answer yet
+        #     '?'    : maybe the answer
         if len(S) > 1:
             value += '?' if g in S else '*'
 
