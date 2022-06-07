@@ -14,7 +14,14 @@ def solve(secret):
             responses += "%d%d " % resp
         g = guess(S)
 
-        value = g + ('' if g in S else '*')
+        value = g
+        # Meaning of symbols:
+        #   - no symbol: this is definitely the correct answer
+        #   - '*': this is definitely not the correct answer yet
+        #   - '?': this is maybe the answer
+        if len(S) > 1:
+            value += '?' if g in S else '*'
+
         try:
             assert table[responses] == value
         except KeyError:
