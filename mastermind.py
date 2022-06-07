@@ -18,11 +18,21 @@ responses = [(right, wrong) for right in range(5)
 responses.remove((3, 1))
 assert len(responses) == 14
 
+def add_info(g, S, symbol=False):
+    if len(S) == 0:  # answers have been inconsistent
+        return ["inconsistent", "#"][symbol]
+    if len(S) == 1:  # the final correct answer
+        return ["final", "!"][symbol]
+    if g in S:       # possibly the correct answer
+        return ["possible", "?"][symbol]
+    else:            # definitely not the correct answer yet
+        return ["impossible", "*"][symbol]
+
 def get_response(g, S):
     if SECRET:
         return score(SECRET, g)
 
-    inp = input('%spossible %s: ' % ('' if g in S else 'im', g))
+    inp = input('%s %s: ' % (add_info(g, S), g))
     if set(inp) - set('+-'):
         sys.exit("ill-formed response: %r" % inp)
     return inp.count('+'), inp.count('-')

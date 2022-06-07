@@ -1,4 +1,4 @@
-from mastermind import allcodes, guess, score
+from mastermind import allcodes, add_info, guess, score
 
 
 # map responses to guess
@@ -14,14 +14,7 @@ def solve(secret):
             responses += "%d%d " % resp
         g = guess(S)
 
-        value = g
-        # Meaning of symbols:
-        #   no symbol: definitely the correct answer
-        #     '*'    : definitely not the correct answer yet
-        #     '?'    : maybe the answer
-        if len(S) > 1:
-            value += '?' if g in S else '*'
-
+        value = g + add_info(g, S, True).strip("!")
         try:
             assert table[responses] == value
         except KeyError:
