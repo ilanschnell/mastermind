@@ -57,7 +57,7 @@ def solve():
         resp = get_response(g, S)
         print("%d %4d %s %5s %s" %
               (i, len(S), g, g in S, '+' * resp[0] + '-' * resp[1]))
-        if resp == (4, 0):
+        if resp == (4, 0) or not S:
             return i
         # only keep the codes which would give the same response
         S = tuple(s for s in S if score(s, g) == resp)
