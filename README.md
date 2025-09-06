@@ -41,7 +41,7 @@ Although I was able to create a working program quickly, I found the various
 descriptions of the algorithm very confusing, and it took me a while to get
 to the bottom of how it works.   So what follows is my own description.
 
-The algorithm that progressively reduces the number of possible codes.
+The algorithm progressively reduces the number of possible codes.
 It starts by taking creating a list of all 1296 (6^4) possible codes `S`,
 and an initial guess of `BBGG`.
 Obviously, a response of `(4, 0)` terminates the algorithm.
