@@ -58,7 +58,7 @@ surprisingly well (with an average of about 4.65 guesses) but in some cases
 more then 5 guesses are necessary to break the code.
 
 Instead, we pick a guess (from *all* codes) which minimizes the
-maximum number of remaining `S` over all 14 possible guesses:
+maximum number of remaining `S` over all 14 possible responses:
 
     min(allcodes, key=lambda p: max(sum(score(s, p) == resp for s in S)
                                         for resp in responses))
