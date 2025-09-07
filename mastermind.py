@@ -1,7 +1,7 @@
 import sys
 import random
 import itertools
-from functools import cache  # requires Python 3.9
+from functools import cache
 
 
 COLORS = 'BGKRWY'  # Blue, Green, blacK, Red, White, Yellow
@@ -16,7 +16,6 @@ allcodes = tuple(''.join(p) for p in itertools.product(COLORS, repeat=4))
 responses = [(right, wrong) for right in range(5)
              for wrong in range(5 - right)]
 responses.remove((3, 1))
-assert len(responses) == 14
 
 def add_info(g, S, symbol=False):
     if len(S) == 0:  # answers have been inconsistent

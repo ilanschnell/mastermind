@@ -24,6 +24,9 @@ class TestMastermind(unittest.TestCase):
             self.assertEqual(mastermind.score(a, b), r)
             self.assertEqual(mastermind.score(b, a), r)
 
+    def test_responses(self):
+        self.assertEqual(len(mastermind.responses), 14)
+
 
 def test_all():
     stat = Counter()
