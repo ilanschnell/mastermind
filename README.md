@@ -35,7 +35,8 @@ Responses:
 
 Donald Knuth developed a mastermind code breaking algorithm in 1977, and he
 demonstrated that only 5 guesses are needed to break the code [here](https://www.cs.uni.edu/~wallingf/teaching/cs3530/resources/knuth-mastermind.pdf).
-A description of the algorithm can be found on [Wikipedia](https://en.wikipedia.org/wiki/Mastermind_(board_game)#Worst_case:_Five-guess_algorithm), as well as on many other places.
+A description of the algorithm can be found on [Wikipedia](https://en.wikipedia.org/wiki/Mastermind_(board_game)#Worst_case:_Five-guess_algorithm),
+as well as on many other places.
 
 Although I was able to create a working program quickly, I found the various
 descriptions of the algorithm very confusing, and it took me a while to get
