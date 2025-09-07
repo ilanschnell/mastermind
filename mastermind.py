@@ -46,7 +46,7 @@ def guess(S):
     # all 14 responses.
     # The guess will result in the minimum elements S remaining in the
     # next step, regardless of what the next response actually is.
-    return min(allcodes, key=lambda p: max(sum(score(s, p) == resp for s in S)
+    return min(allcodes, key=lambda t: max(sum(score(s, t) == resp for s in S)
                                            for resp in responses))
 
 def solve():
