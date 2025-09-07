@@ -15,7 +15,7 @@ def score(a, b):
 allcodes = tuple(''.join(p) for p in itertools.product(COLORS, repeat=4))
 responses = [(right, wrong) for right in range(5)
              for wrong in range(5 - right)]
-responses.remove((3, 1))  # +++- cannot be a response
+responses.remove((3, 1))  # +++- cannot be a valid response
 
 def add_info(g, S, symbol=False):
     if len(S) == 0:  # answers have been inconsistent
@@ -34,7 +34,10 @@ def get_response(g, S):
     inp = input('%s %s: ' % (add_info(g, S), g))
     if set(inp) - set('+-'):
         sys.exit("ill-formed response: %r" % inp)
-    return inp.count('+'), inp.count('-')
+    resp = inp.count('+'), inp.count('-')
+    if resp not in responses:
+        sys.exit("invalid response: %r" % inp)
+    return resp
 
 @cache
 def guess(S):
