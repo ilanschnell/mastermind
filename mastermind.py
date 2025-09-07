@@ -1,7 +1,7 @@
 import sys
-import random
 import itertools
 from functools import cache
+from random import choices
 
 
 COLORS = 'BGKRWY'  # Blue, Green, blacK, Red, White, Yellow
@@ -72,7 +72,7 @@ def main():
         global SECRET
         SECRET = sys.argv[1]
         if SECRET == '-':
-            SECRET = ''.join(random.choices(COLORS, k=4))
+            SECRET = ''.join(choices(COLORS, k=4))
             print("secret: %s" % SECRET)
         if len(SECRET) != 4 or set(SECRET) - set(COLORS):
             sys.exit("ill-formed Mastermind code: %r" % SECRET)
