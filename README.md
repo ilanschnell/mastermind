@@ -60,7 +60,7 @@ more then 5 guesses are necessary to break the code.
 Instead, we pick a guess (from *all* codes) which minimizes the
 maximum number of remaining `S` over all 14 possible responses:
 
-    min(allcodes, key=lambda p: max(sum(score(s, p) == resp for s in S)
+    min(allcodes, key=lambda t: max(sum(score(s, t) == resp for s in S)
                                         for resp in responses))
 
 This guess `g` will result in the minimum elements `S` remaining, in the
