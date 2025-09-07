@@ -57,7 +57,7 @@ def solve():
     for i in itertools.count(1):
         g = guess(S)
         resp = get_response(g, S)
-        print("%d %4d %s %5s %s" %
+        print(" %d %4d %s %5s %s" %
               (i, len(S), g, g in S, '+' * resp[0] + '-' * resp[1]))
         if resp == (4, 0) or not S:
             return i
