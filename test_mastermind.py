@@ -24,6 +24,11 @@ class TestMastermind(unittest.TestCase):
             self.assertEqual(mastermind.score(a, b), r)
             self.assertEqual(mastermind.score(b, a), r)
 
+    def test_allcodes(self):
+        a = mastermind.allcodes
+        self.assertEqual(len(a), 6 ** 4)
+        self.assertEqual(len(set(a)), 6 ** 4)
+
     def test_responses(self):
         self.assertEqual(len(mastermind.responses), 14)
 
