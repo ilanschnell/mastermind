@@ -15,7 +15,7 @@ def score(a, b):
 allcodes = tuple(''.join(p) for p in itertools.product(COLORS, repeat=4))
 responses = [(right, wrong) for right in range(5)
              for wrong in range(5 - right)]
-responses.remove((3, 1))
+responses.remove((3, 1))  # +++- cannot be a response
 
 def add_info(g, S, symbol=False):
     if len(S) == 0:  # answers have been inconsistent
