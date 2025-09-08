@@ -24,6 +24,7 @@ class TestMastermind(unittest.TestCase):
         ]:
             self.assertEqual(mastermind.score(a, b), r)
             self.assertEqual(mastermind.score(b, a), r)
+            self.assertTrue(r in mastermind.responses)
 
     def test_allcodes(self):
         a = mastermind.allcodes
