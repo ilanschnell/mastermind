@@ -8,6 +8,14 @@ import mastermind
 
 class TestMastermind(unittest.TestCase):
 
+    def test_allcodes(self):
+        a = mastermind.allcodes
+        self.assertEqual(len(a), 6 ** 4)
+        self.assertEqual(len(set(a)), 6 ** 4)
+
+    def test_responses(self):
+        self.assertEqual(len(mastermind.responses), 14)
+
     def test_score(self):
         for a, b, r in [
                 ('BGGG', 'KRKR', (0, 0)),
@@ -29,14 +37,6 @@ class TestMastermind(unittest.TestCase):
             self.assertEqual(mastermind.score(a, b), r)
             self.assertEqual(mastermind.score(b, a), r)
             self.assertTrue(r in mastermind.responses)
-
-    def test_allcodes(self):
-        a = mastermind.allcodes
-        self.assertEqual(len(a), 6 ** 4)
-        self.assertEqual(len(set(a)), 6 ** 4)
-
-    def test_responses(self):
-        self.assertEqual(len(mastermind.responses), 14)
 
     def test_solve(self):
         mastermind.SECRET = ''.join(choices(mastermind.COLORS, k=4))
