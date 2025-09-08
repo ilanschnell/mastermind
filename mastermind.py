@@ -52,13 +52,14 @@ def guess(S):
     return min(allcodes, key=lambda t: max(sum(score(s, t) == resp for s in S)
                                            for resp in responses))
 
-def solve():
+def solve(verbose=True):
     S = allcodes
     for i in itertools.count(1):
         g = guess(S)
         resp = get_response(g, S)
-        print(" %d %4d %s %5s %s" %
-              (i, len(S), g, g in S, '+' * resp[0] + '-' * resp[1]))
+        if verbose:
+            print("%2d %4d %s %5s %s" %
+                  (i, len(S), g, g in S, '+' * resp[0] + '-' * resp[1]))
         if resp == (4, 0) or not S:
             return i
         # only keep the codes which would give the same response

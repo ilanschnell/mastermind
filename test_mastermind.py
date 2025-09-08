@@ -1,6 +1,7 @@
 import sys
 import unittest
 from collections import Counter
+from random import choices
 
 import mastermind
 
@@ -32,13 +33,20 @@ class TestMastermind(unittest.TestCase):
     def test_responses(self):
         self.assertEqual(len(mastermind.responses), 14)
 
+    def test_solve(self):
+        mastermind.SECRET = ''.join(choices(mastermind.COLORS, k=4))
+        i = mastermind.solve(verbose=False)
+        self.assertTrue(i <= 5)
+
 
 def test_all():
     stat = Counter()
     for secret in mastermind.allcodes:
         mastermind.SECRET = secret
-        print("secret: %s" % secret)
-        stat[mastermind.solve()] += 1
+        i = mastermind.solve(verbose=False)
+        stat[i] += 1
+        sys.stdout.write('.')
+        sys.stdout.flush()
     print(stat)
     n = sum(i * n for i, n in stat.items())
     print('n:', n)
