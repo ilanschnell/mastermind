@@ -13,8 +13,8 @@ def score(a, b):
     return matches, sum(min(a.count(c), b.count(c)) for c in COLORS) - matches
 
 allcodes = tuple(''.join(p) for p in itertools.product(COLORS, repeat=4))
-responses = [(right, wrong) for right in range(5)
-             for wrong in range(5 - right)]
+responses = [(matches, ncolors) for matches in range(5)
+             for ncolors in range(5 - matches)]
 responses.remove((3, 1))  # +++- cannot be a valid response
 
 def add_info(g, S, symbol=False):
