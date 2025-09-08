@@ -10,17 +10,21 @@ class TestMastermind(unittest.TestCase):
 
     def test_score(self):
         for a, b, r in [
-                ('BBKB', 'BBGG', (2, 0)),
-                ('BGKR', 'BGKR', (4, 0)),
-                ('YBRK', 'BBGW', (1, 0)),
-                ('BBKB', 'BGKR', (2, 0)),
-                ('BGKB', 'KBGB', (1, 3)),
-                ('BGKR', 'GKRB', (0, 4)),
-                ('GBKR', 'BGKR', (2, 2)),
                 ('BGGG', 'KRKR', (0, 0)),
-                ('BBKK', 'BKGG', (1, 1)),
-                ('BBKY', 'BKGY', (2, 1)),
+                ('BGKR', 'YWGY', (0, 1)),
+                ('YWGR', 'WYKK', (0, 2)),
+                ('BGKR', 'GKRY', (0, 3)),
                 ('GGBB', 'BBGG', (0, 4)),
+                ('YBRK', 'BBGW', (1, 0)),
+                ('BBKK', 'BKGG', (1, 1)),
+                ('GBYW', 'KWYB', (1, 2)),
+                ('BGKB', 'KBGB', (1, 3)),
+                ('BBKB', 'BGKR', (2, 0)),
+                ('BBKB', 'BBGG', (2, 0)),
+                ('BBKY', 'BKGY', (2, 1)),
+                ('GBKR', 'BGKR', (2, 2)),
+                ('WWKR', 'WYKR', (3, 0)),
+                ('BGKR', 'BGKR', (4, 0)),
         ]:
             self.assertEqual(mastermind.score(a, b), r)
             self.assertEqual(mastermind.score(b, a), r)
